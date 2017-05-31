@@ -1,0 +1,43 @@
+import java.awt.Color;
+
+/*
+ * This code is protected under the Gnu General Public License (Copyleft), 2005 by
+ * IBM and the Computer Science Teachers of America organization. It may be freely
+ * modified and redistributed under educational fair use.
+ */
+
+
+public class Paddle extends GameObject {
+
+	private int width;
+	private int height;
+	private int x, y;
+	private final double SPEED;
+	
+	public Paddle(int x, int y, int width, int height){
+		this.x = x;
+		this.y = y;
+		setX(x);
+		setY(y);
+		setColor(Color.WHITE);
+		setSize(width, height);
+	}
+
+	/**
+	 * Fill in this method with code that describes the behavior
+	 * of a paddle from one moment to the next 
+	 */
+	public void act() {
+
+	}
+	
+	public void moveRight() {
+		setX(getX()+2);
+	}
+	
+	public void moveLeft() {
+		setX(getX()-2);
+	}
+	
+	// Add any additional methods here
+}

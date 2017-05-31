@@ -1,0 +1,59 @@
+import java.awt.*;
+
+/*
+ * This code is protected under the Gnu General Public License (Copyleft), 2005 by
+ * IBM and the Computer Science Teachers of America organization. It may be freely
+ * modified and redistributed under educational fair use.
+ */
+
+
+public class Ball extends GameObject {
+
+	private final int BALL_RADIUS = 2;
+	//co-ordinates of ball
+	private double x,y;
+	private double speed, speedx, speedy;
+	private double angle;
+
+	public Ball(double x, double y, double speed, double angle){
+		this.x = x;
+		this.y = y;
+		this.angle = angle;
+		this.speed = speed;
+		speedx = (double)(speed * Math.cos(Math.toRadians(angle)));
+		speedy = (double)(-speed * Math.sin(Math.toRadians(angle)));
+		setColor(Color.WHITE);
+		setSize(5,5);
+	}
+
+	/**
+	 * Fill in this method with code that describes the behavior
+	 * of a ball from one moment to the next 
+	 */
+	public void act() {
+		setX((int)(x+=speedx + 0.5));
+		setY((int)(y+=speedy + 0.5));
+		System.out.println(speedx);
+		System.out.println(speedy);
+		
+	}
+	
+	public void bounceHorizontally() {
+	    angle = 2 * Math.PI - angle;
+	    speedx = (double)(speed * Math.cos(Math.toRadians(angle)));
+		speedy = (double)(-speed * Math.sin(Math.toRadians(angle)));
+//		System.out.println("h");
+	}
+	
+	/**
+	 * Reflect the ball off a vertical surface
+	 */
+	public void bounceVertically() {
+	    angle = Math.PI - angle;
+	    speed *= -1;
+	    speedx = (double)(speed * Math.cos(Math.toRadians(angle)));
+		speedy = (double)(-speed * Math.sin(Math.toRadians(angle)));
+//		System.out.println("v");
+	}
+//	 Add any additional methods here
+}

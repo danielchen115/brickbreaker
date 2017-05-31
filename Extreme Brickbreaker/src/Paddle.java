@@ -12,7 +12,7 @@ public class Paddle extends GameObject {
 	private int width;
 	private int height;
 	private int x, y;
-	private double speed;
+	private final int SPEED = 4;
 	
 	public Paddle(int x, int y, int width, int height){
 		this.x = x;
@@ -32,11 +32,11 @@ public class Paddle extends GameObject {
 	}
 	
 	public void moveRight() {
-		setX(getX()+2);
+		setX(getX()+ SPEED);
 	}
 	
 	public void moveLeft() {
-		setX(getX()-2);
+		setX(getX()- SPEED);
 	}
 	
 	// Add any additional methods here

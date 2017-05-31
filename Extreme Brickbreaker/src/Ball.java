@@ -11,12 +11,15 @@ public class Ball extends GameObject {
 
 	private final int BALL_RADIUS = 2;
 	//co-ordinates of ball
-	private int x,y;
-	private double speedx, speedy;
+	private double x,y;
+	private double speed, speedx, speedy;
+	private double angle;
 
-	public Ball(int x, int y, int speed, double angle){
+	public Ball(double x, double y, double speed, double angle){
 		this.x = x;
 		this.y = y;
+		this.angle = angle;
+		this.speed = speed;
 		speedx = (double)(speed * Math.cos(Math.toRadians(angle)));
 		speedy = (double)(-speed * Math.sin(Math.toRadians(angle)));
 		setColor(Color.WHITE);
@@ -28,8 +31,29 @@ public class Ball extends GameObject {
 	 * of a ball from one moment to the next 
 	 */
 	public void act() {
-		setX((int)(x+=speedx + 0.5));
-		setY((int)(y+=speedy + 0.5));
+		x+=speedx;
+		y+=speedy;
+		setX((int)(x + 0.5));
+		setY((int)(y + 0.5));
+		
 	}
-	// Add any additional methods here
+	
+	public void bounceHorizontally() {
+	    angle = 2 * Math.PI - angle;
+	    speedx = (double)(speed * Math.cos(Math.toRadians(angle)));
+		speedy = (double)(-speed * Math.sin(Math.toRadians(angle)));
+		System.out.println(getY());
+	}
+	
+	/**
+	 * Reflect the ball off a vertical surface
+	 */
+	public void bounceVertically() {
+	    angle = Math.PI - angle;
+	    speed *= -1;
+	    speedx = (double)(speed * Math.cos(Math.toRadians(angle)));
+		speedy = (double)(-speed * Math.sin(Math.toRadians(angle)));
+		System.out.println(getX());
+	}
+//	 Add any additional methods here
 }
